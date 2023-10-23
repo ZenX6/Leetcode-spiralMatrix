@@ -1,0 +1,58 @@
+Let's break down the spiralOrder function step by step, using the algorithm described:
+
+1. Initialization
+We start by initializing four boundaries:
+
+top starts at 0, indicating the top-most unprocessed row.
+bottom starts at matrix.length - 1, indicating the bottom-most unprocessed row.
+left starts at 0, indicating the left-most unprocessed column.
+right starts at matrix[0].length - 1, indicating the right-most unprocessed column.
+2. Begin Loop
+We begin a loop that continues as long as the top boundary doesn't cross the bottom boundary, and the left boundary doesn't cross the right boundary.
+
+3. Traverse Right
+For i from left to right:
+
+Push matrix[top][i] to the result array.
+This will cover the topmost row of the current "layer" of the matrix.
+After processing, increment the top boundary, effectively ignoring this row in subsequent loops.
+
+4. Traverse Down
+For i from top to bottom:
+
+Push matrix[i][right] to the result array.
+This will cover the rightmost column of the current "layer" of the matrix.
+After processing, decrement the right boundary, effectively ignoring this column in subsequent loops.
+
+5. Traverse Left
+Before doing this step, we ensure top is still less than or equal to bottom.
+
+For i from right to left:
+
+Push matrix[bottom][i] to the result array.
+This covers the bottom-most row of the current "layer" of the matrix.
+After processing, decrement the bottom boundary, effectively ignoring this row in subsequent loops.
+
+6. Traverse Up
+Before doing this step, we ensure left is still less than or equal to right.
+
+For i from bottom to top:
+
+Push matrix[i][left] to the result array.
+This covers the leftmost column of the current "layer" of the matrix.
+After processing, increment the left boundary, effectively ignoring this column in subsequent loops.
+
+7. Repeat
+The loop goes back to step 3 and continues the process for the next inner "layer" of the matrix. This continues until all "layers" have been processed.
+
+8. Return the Result
+After all layers have been processed and the loop exits, we simply return the result array which now contains elements in the desired spiral order.
+
+Example with matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]:
+
+Right: Add 1, 2, 3
+Down: Add 6, 9
+Left: Add 8, 7
+Up: Add 4
+Right (next layer): Add 5
+The result is: [1,2,3,6,9,8,7,4,5], which is the desired spiral order.
